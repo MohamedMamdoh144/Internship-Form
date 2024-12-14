@@ -119,8 +119,8 @@ export default function Kanban() {
       <>
       <div className="w-screen flex justify-evenly items-stretch">
         <DragDropContext onDragEnd={handleDragEnd}>
-        {Object.entries(uiCols).map(col=>{
-           return <Droppable droppableId={col[0]}>
+        {Object.entries(uiCols).map((col, colInd)=>{
+           return <Droppable droppableId={col[0]} key={colInd}>
            {(provided, snapshot) => (
             <ul className={cn(col[0],"w-96 bg-indigo-500 px-6 flex flex-col justify-start items-stretch")} 
              ref={provided.innerRef}

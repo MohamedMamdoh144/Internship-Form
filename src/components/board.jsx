@@ -1,6 +1,7 @@
 "use client"
 import React from "react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -11,46 +12,42 @@ import {
 } from "@/components/ui/card"
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
+import rounds from "./data";
+
+// Make three copies
+const dupRounds=Array.from(Object.values(rounds));
+dupRounds.push(...Object.values({...rounds}));
+dupRounds.push(...Object.values({...rounds}));
+// set unique IDs
+const initRounds=dupRounds.map((el,i)=>{const temp={...el};temp.id=parseInt(i/6)+1; return temp;});
+
+
+
+// initialize columns
+const lists={
+  start:{
+    name:"Move Around",
+    items:initRounds
+  },
+  first:{
+    name:"First Plan",
+    items:[]
+  },
+  second:{
+    name:"Second Plan",
+    items:[]
+  },
+  third:{
+    name:"Third Plan",
+    items:[]
+  }
+}
 
 export default function Kanban() {
-  const [rounds, setRounds] =useState({
-    ICU:{
-      id:"icu",
-      title:"ICU",
-      remaining:3,
-      positions:[]
-    },
-    Psychiatry:{
-      id:"psy",
-      title:"Psychiatry",
-      remaining:3,
-      positions:[]
-    },
-    Family:{
-      id:"fm",
-      title:"Family Medicine",
-      remaining:3,
-      positions:[]
-    },
-    Emergency:{
-      id:"em",
-      title:"Emergency Medicine",
-      remaining:3,
-      positions:[]
-    },
-    IM:{
-      id:"im",
-      title:"IM Specialties",
-      remaining:3,
-      positions:[]
-    },
-    Surgery:{
-      id:"sur",
-      title:"Surgery Speciatlies",
-      remaining:3,
-      positions:[]
-    }
-  });
+  const [baseRounds, setBaseRounds]=useState(rounds);
+  const [uiCols, setUICols] = useState(lists);
+
+
   const [roundData, setRoundData]= useState([
     {
       id:"icu",
@@ -83,96 +80,84 @@ export default function Kanban() {
       details: "2 Months; Has Two 1-month rounds"
     }
   ]);
+
+
   const handleDragEnd = (result) => {
     const { source, destination } = result;
     console.log(result)
+    const dragID=result.draggableId.split("_")[0];
+    const newPositions={...baseRounds};
+    const newCols={...uiCols};
+
     // If dropped outside a valid area, do nothing
     if (!destination) return;
-
-    // Reorder roundData
-    const updatedData = Array.from(roundData);
-    const [removed] = updatedData.splice(source.index, 1);
-    updatedData.splice(destination.index, 0, removed);
-
+    // If already exists at similar position; do nothing
+    if(destination.droppableId != "start" && newPositions[dragID].positions.indexOf(destination.index)!==-1) return;
+    // if already exists in non-initial position; do nothing
+    if(destination.droppableId != "start" &&
+      newCols[destination.droppableId].items.filter(el=>el.name==dragID).length>0) return;
+    // update positions
+    
+    
+    if(destination.droppableId != "start" && source.droppableId != "start"){
+        newPositions[dragID].positions.push(destination.index);
+        newPositions[dragID].positions.filter(el=>el!=source.index);
+    } else  if(destination.droppableId != "start" && source.droppableId == "start"){
+        newPositions[dragID].positions.push(destination.index);
+    } else if(destination.droppableId == "start"){
+      newPositions[dragID].positions.filter(el=>el!=source.index);
+    }
+    setBaseRounds(newPositions);
+    // retrieve columns
+    const [removed] = newCols[source.droppableId].items.splice(source.index, 1);
+    newCols[destination.droppableId].items.splice(destination.index, 0, removed);
+    console.log(newPositions);
     // Update state
-    setRoundData(updatedData);
+    setUICols(newCols);
   };
     return (
       <>
-      <div className="w-screen h-screen bg-indigo-300 flex justify-evenly items-center">
+      <div className="w-screen flex justify-evenly items-stretch">
         <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="List1">
-          {(provided, snapshot) => (
-           <ul className={"List1 w-96 flex flex-col justify-center items-stretch"} 
-            ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {roundData.map((el,i)=>{return <Draggable key={el.id + "1"} draggableId={el.id+ "1"} index={i}>
-                                                {(provided, snapshot) => (
-                                                  <li
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    className={"my-2"}
-                                                  >
+        {Object.entries(uiCols).map(col=>{
+           return <Droppable droppableId={col[0]}>
+           {(provided, snapshot) => (
+            <ul className={cn(col[0],"w-96 bg-indigo-500 px-6 flex flex-col justify-start items-stretch")} 
+             ref={provided.innerRef}
+               {...provided.droppableProps}
+             >
+              <h2 className="text-xl text-white my-4">{col[1].name}</h2>
+               {col[1].items.map((itm,i)=>{return <Draggable key={itm.name + "_" + itm.id} draggableId={itm.name + "_" + itm.id} index={i}>
+                                                 {(provided, snapshot) => (
+                                                   <li
+                                                     ref={provided.innerRef}
+                                                     {...provided.draggableProps}
+                                                     {...provided.dragHandleProps}
+                                                     className={"my-2"}
+                                                   >
+                                                    
+                                                           <Card>
+                                                             <CardHeader>
+                                                               <CardTitle>{itm.title}</CardTitle>
+                                                               <CardDescription>Round</CardDescription>
+                                                             </CardHeader>
+                                                             <CardContent>
+                                                               <p>{itm.details}</p>
+                                                             </CardContent>
+                                                       
+                                                           </Card>
+                                                           </li>
                                                    
-                                                          <Card>
-                                                            <CardHeader>
-                                                              <CardTitle>{el.title}</CardTitle>
-                                                              <CardDescription>Round</CardDescription>
-                                                            </CardHeader>
-                                                            <CardContent>
-                                                              <p>{el.details}</p>
-                                                            </CardContent>
-                                                      
-                                                          </Card>
-                                                          </li>
-                                                  
-                                                )}
-                                              </Draggable> 
-            }
-            
-                  ) }
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-        <Droppable droppableId="List2">
-          {(provided, snapshot) => (
-           <ul className={"List2 w-96 flex flex-col justify-center items-stretch"} 
-            ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {roundData.map((el,i)=>{return <Draggable key={el.id+ "2"} draggableId={el.id+ "2"} index={i}>
-                                                {(provided, snapshot) => (
-                                                  <li
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    className={"my-2"}
-                                                  >
-                                                   
-                                                          <Card>
-                                                            <CardHeader>
-                                                              <CardTitle>{el.title}</CardTitle>
-                                                              <CardDescription>Round</CardDescription>
-                                                            </CardHeader>
-                                                            <CardContent>
-                                                              <p>{el.details}</p>
-                                                            </CardContent>
-                                                      
-                                                          </Card>
-                                                          </li>
-                                                  
-                                                )}
-                                              </Draggable> 
-            }
-            
-                  ) }
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
+                                                 )}
+                                               </Draggable> 
+             }
+             
+                   ) }
+               {provided.placeholder}
+             </ul>
+           )}
+         </Droppable>
+        })}
     
         </DragDropContext>
 

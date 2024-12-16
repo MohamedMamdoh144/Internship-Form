@@ -76,3 +76,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.sd-body .sd-body__page {
+  /* min-width: min(100%, 300px); */
+  width: 100vw !important;
+}
+.sd-body.sd-body--static  {
+  /* min-width: min(100%, 300px); */
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

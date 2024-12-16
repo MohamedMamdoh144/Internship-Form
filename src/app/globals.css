@@ -77,12 +77,16 @@ body {
   }
 }
 
-.sd-body .sd-body__page {
+.sd-body .sd-body__page:has(.kanban) {
   /* min-width: min(100%, 300px); */
   width: 100vw !important;
 }
-.sd-body.sd-body--static  {
+.sd-body.sd-body--static:has(.kanban) {
   /* min-width: min(100%, 300px); */
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+.sd-page .sd-page__description{
+  direction: rtl;
+  color: rgb(233, 233, 233) !important;
 }

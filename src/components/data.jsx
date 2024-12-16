@@ -46,7 +46,7 @@ const rounds={
   export default rounds;
   
   export const surveyJson = {
-    "title": "السنة الثانية امتيازنظام 5+2",
+    "title": "السنة الثانية امتياز (نظام 5+2)",
     "description": "تعليمات\r\nلا ينتقل الطالب من السنة الأولى الى السنة الثانية في برنامح تدريب الأطباء الامتياز الا بعد استكمال الدورات التدريبية والمحاضرات المنصوص عليها باللائحة",
     "logoPosition": "right",
     "pages": [
@@ -85,11 +85,227 @@ const rounds={
         "name": "page2",
         "elements": [
           {
-            "type": "kanban",
-            "name": "question2",
-            "title": "To be filled"
+            type: "kanban", // Custom type
+            name: "kanbanBoard", // Unique name
+            "title": "Pick three unique plans"
           }
         ]
+      },
+      {
+        "name": "page3",
+        "title": "اختيار تخصصات الباطنة والجراحة",
+        "description": "ستقوم باختيار الأقسام التخصصية التي ترغب بالحضور بها \r\nفي كل راوند سيتم الحضور في قسمين من اقسام الجراحة المتخصصة وقسمين من اقسام الباطنة المتخصصة حيث تكون مدة الحضور شهر لكل تخصص\r\nستقوم باختيار 3 تخصصات محتملة ترغب بالحضور بها في كل شهر ",
+        "elements": [
+          {
+            "type": "radiogroup",
+            "name": "question6",
+            "title": "التخصص الجراحي الشهر الأول",
+            "choices": [
+              {
+                "value": "Item 1",
+                "text": "مخ وأعصاب"
+              },
+              {
+                "value": "Item 2",
+                "text": "قلب وصدر"
+              },
+              {
+                "value": "Item 3",
+                "text": "تجميل"
+              },
+              {
+                "value": "Item 4",
+                "text": "أنف وأذن"
+              },
+              {
+                "value": "Item 5",
+                "text": "رمد"
+              },
+              {
+                "value": "Item 6",
+                "text": "مسالك"
+              },
+              {
+                "value": "Item 7",
+                "text": "عظام"
+              }
+            ],
+            "isRequired": true
+          },
+          {
+            "type": "radiogroup",
+            "name": "question7",
+            "title": "التخصص الجراحي الشهر الثاني",
+            "choices": [
+              {
+                "value": "Item 1",
+                "text": "مخ وأعصاب"
+              },
+              {
+                "value": "Item 2",
+                "text": "قلب وصدر"
+              },
+              {
+                "value": "Item 3",
+                "text": "تجميل"
+              },
+              {
+                "value": "Item 4",
+                "text": "أنف وأذن"
+              },
+              {
+                "value": "Item 5",
+                "text": "رمد"
+              },
+              {
+                "value": "Item 6",
+                "text": "مسالك"
+              },
+              {
+                "value": "Item 7",
+                "text": "عظام"
+              }
+            ],
+            "isRequired": true
+          },
+          {
+            "type": "radiogroup",
+            "name": "question8",
+            "title": "تخصص الباطنة الشهر الأول",
+            "choices": [
+              {
+                "value": "Item 1",
+                "text": "جلدية"
+              },
+              {
+                "value": "Item 2",
+                "text": "بنك دم"
+              },
+              {
+                "value": "Item 3",
+                "text": "معمل"
+              },
+              {
+                "value": "Item 4",
+                "text": "أورام"
+              },
+              {
+                "value": "Item 5",
+                "text": "متوطنة"
+              },
+              {
+                "value": "Item 6",
+                "text": "قلب"
+              },
+              {
+                "value": "Item 7",
+                "text": "صدرية"
+              },
+              {
+                "value": "Item 8",
+                "text": "روماتيزم"
+              },
+              {
+                "value": "Item 9",
+                "text": "عصبية"
+              }
+            ],
+            "isRequired": true
+          },
+          {
+            "type": "radiogroup",
+            "name": "question9",
+            "title": "تخصص الباطنة الشهر الثاني",
+            "choices": [
+              {
+                "value": "Item 1",
+                "text": "جلدية"
+              },
+              {
+                "value": "Item 2",
+                "text": "بنك دم"
+              },
+              {
+                "value": "Item 3",
+                "text": "معمل"
+              },
+              {
+                "value": "Item 4",
+                "text": "أورام"
+              },
+              {
+                "value": "Item 5",
+                "text": "متوطنة"
+              },
+              {
+                "value": "Item 6",
+                "text": "قلب"
+              },
+              {
+                "value": "Item 7",
+                "text": "صدرية"
+              },
+              {
+                "value": "Item 8",
+                "text": "روماتيزم"
+              },
+              {
+                "value": "Item 9",
+                "text": "عصبية"
+              }
+            ],
+            "isRequired": true
+          }
+        ]
+      },
+      {
+        "name": "page4",
+        "title": "راوند طب الأسرة ",
+        "description": "في هذه الفترة سيكون الحضور في الوحدات الصحية المختلفة ⦿\r\nتأكد من اختيار اقرب مركز الي محل السكن حيث سيتم توزيعك للحضور في الوحدات الصحية القريبة ⦿",
+        "elements": [
+          {
+            "type": "radiogroup",
+            "name": "question10",
+            "title": "اقرب مركز الي محل اقامتك",
+            "choices": [
+              {
+                "value": "Item 1",
+                "text": "بني سويف"
+              },
+              {
+                "value": "Item 2",
+                "text": "الواسطي"
+              },
+              {
+                "value": "Item 3",
+                "text": "اهناسيا"
+              },
+              {
+                "value": "Item 4",
+                "text": "ببا"
+              },
+              {
+                "value": "Item 5",
+                "text": "سمسطا"
+              },
+              {
+                "value": "Item 6",
+                "text": "الفشن"
+              },
+              {
+                "value": "Item 7",
+                "text": "ناصر"
+              }
+            ],
+            "isRequired": true
+          }
+        ]
+      },
+      {
+        "name": "page5",
+        "title": "راوند الطب النفسي",
+        "description": "يمضي طبيب الامتياز راوند الطب النفسي ما بين الحضور في القسم بالمستشفي الجامعي و مستشفي الصحة النفسية بالمحافظة"
       }
+    
     ]
   }

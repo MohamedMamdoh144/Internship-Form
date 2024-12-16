@@ -5,6 +5,7 @@ import Form from "@/components/survery";
 export default function Home() {
   return (
     <>
+    {/* <Kanban /> */}
     <Form />
     </>
   );

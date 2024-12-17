@@ -99,7 +99,7 @@ export default function Kanban({ onKanbanChange }) {
         {Object.entries(uiCols).map((col, colInd)=>{
            return <Droppable droppableId={col[0]} key={colInd}>
            {(provided, snapshot) => (
-            <ul className={cn(col[0],"w-1/5 bg-indigo-500 px-6 flex flex-col justify-start items-stretch rounded-lg h-screen overflow-y-scroll")} 
+            <ul className={cn(col[0],"w-1/5 bg-indigo-500 px-6 flex flex-col justify-start items-stretch rounded-lg h-screen overflow-y-scroll overflow-x-hidden")} 
              ref={provided.innerRef}
                {...provided.droppableProps}
              >

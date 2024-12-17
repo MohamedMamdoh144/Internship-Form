@@ -90,3 +90,6 @@ body {
   direction: rtl;
   color: rgb(233, 233, 233) !important;
 }
+.sd-page {
+  align-items: flex-end !important;
+}

@@ -55,26 +55,26 @@ const rounds={
         "elements": [
           {
             "type": "text",
-            "name": "question3",
+            "name": "name",
             "title": "الاسم رباعي بالعربية\r\n",
             "isRequired": true
           },
           {
             "type": "text",
-            "name": "question1",
+            "name": "email",
             "title": "Email",
             "isRequired": true,
             "inputType": "email"
           },
           {
             "type": "text",
-            "name": "question4",
+            "name": "NID",
             "title": "الرقم القومي او رقم الباسبور",
             "isRequired": true
           },
           {
             "type": "text",
-            "name": "question5",
+            "name": "FID",
             "title": "رقم الجلوس",
             "isRequired": true,
             "inputType": "number"
@@ -85,8 +85,8 @@ const rounds={
         "name": "page2",
         "elements": [
           {
-            type: "kanban", // Custom type
-            name: "kanbanBoard", // Unique name
+            type: "kanban", 
+            name: "kanbanBoard", 
             "title": "Pick three unique plans"
           }
         ]
@@ -94,39 +94,39 @@ const rounds={
       {
         "name": "page3",
         "title": "اختيار تخصصات الباطنة والجراحة",
-        "description": "ستقوم باختيار الأقسام التخصصية التي ترغب بالحضور بها \r\nفي كل راوند سيتم الحضور في قسمين من اقسام الجراحة المتخصصة وقسمين من اقسام الباطنة المتخصصة حيث تكون مدة الحضور شهر لكل تخصص\r\nستقوم باختيار 3 تخصصات محتملة ترغب بالحضور بها في كل شهر ",
+        "description": "⦿ ستقوم باختيار الأقسام التخصصية التي ترغب بالحضور بها\r\n⦿ في كل راوند سيتم الحضور في قسمين من اقسام الجراحة المتخصصة وقسمين من اقسام الباطنة المتخصصة حيث تكون مدة الحضور شهر لكل تخصص\r\n⦿ ستقوم باختيار 3 تخصصات محتملة ترغب بالحضور بها في كل شهر ",
         "elements": [
           {
             "type": "radiogroup",
-            "name": "question6",
+            "name": "sur1",
             "title": "التخصص الجراحي الشهر الأول",
             "choices": [
               {
-                "value": "Item 1",
+                "value": "neurosurgery",
                 "text": "مخ وأعصاب"
               },
               {
-                "value": "Item 2",
+                "value": "cardiothoracic",
                 "text": "قلب وصدر"
               },
               {
-                "value": "Item 3",
+                "value": "plastic",
                 "text": "تجميل"
               },
               {
-                "value": "Item 4",
+                "value": "ent",
                 "text": "أنف وأذن"
               },
               {
-                "value": "Item 5",
+                "value": "opth",
                 "text": "رمد"
               },
               {
-                "value": "Item 6",
+                "value": "uro",
                 "text": "مسالك"
               },
               {
-                "value": "Item 7",
+                "value": "ortho",
                 "text": "عظام"
               }
             ],
@@ -134,35 +134,35 @@ const rounds={
           },
           {
             "type": "radiogroup",
-            "name": "question7",
+            "name": "sur2",
             "title": "التخصص الجراحي الشهر الثاني",
             "choices": [
               {
-                "value": "Item 1",
+                "value": "neurosurgery",
                 "text": "مخ وأعصاب"
               },
               {
-                "value": "Item 2",
+                "value": "cardiothoracic",
                 "text": "قلب وصدر"
               },
               {
-                "value": "Item 3",
+                "value": "plastic",
                 "text": "تجميل"
               },
               {
-                "value": "Item 4",
+                "value": "ent",
                 "text": "أنف وأذن"
               },
               {
-                "value": "Item 5",
+                "value": "opth",
                 "text": "رمد"
               },
               {
-                "value": "Item 6",
+                "value": "uro",
                 "text": "مسالك"
               },
               {
-                "value": "Item 7",
+                "value": "ortho",
                 "text": "عظام"
               }
             ],
@@ -170,43 +170,43 @@ const rounds={
           },
           {
             "type": "radiogroup",
-            "name": "question8",
+            "name": "im1",
             "title": "تخصص الباطنة الشهر الأول",
             "choices": [
               {
-                "value": "Item 1",
+                "value": "derma",
                 "text": "جلدية"
               },
               {
-                "value": "Item 2",
+                "value": "bank",
                 "text": "بنك دم"
               },
               {
-                "value": "Item 3",
+                "value": "lab",
                 "text": "معمل"
               },
               {
-                "value": "Item 4",
+                "value": "onco",
                 "text": "أورام"
               },
               {
-                "value": "Item 5",
+                "value": "tropical",
                 "text": "متوطنة"
               },
               {
-                "value": "Item 6",
+                "value": "cardio",
                 "text": "قلب"
               },
               {
-                "value": "Item 7",
+                "value": "chest",
                 "text": "صدرية"
               },
               {
-                "value": "Item 8",
+                "value": "rheumato",
                 "text": "روماتيزم"
               },
               {
-                "value": "Item 9",
+                "value": "neuro",
                 "text": "عصبية"
               }
             ],
@@ -214,43 +214,43 @@ const rounds={
           },
           {
             "type": "radiogroup",
-            "name": "question9",
+            "name": "im2",
             "title": "تخصص الباطنة الشهر الثاني",
             "choices": [
               {
-                "value": "Item 1",
+                "value": "derma",
                 "text": "جلدية"
               },
               {
-                "value": "Item 2",
+                "value": "bank",
                 "text": "بنك دم"
               },
               {
-                "value": "Item 3",
+                "value": "lab",
                 "text": "معمل"
               },
               {
-                "value": "Item 4",
+                "value": "onco",
                 "text": "أورام"
               },
               {
-                "value": "Item 5",
+                "value": "tropical",
                 "text": "متوطنة"
               },
               {
-                "value": "Item 6",
+                "value": "cardio",
                 "text": "قلب"
               },
               {
-                "value": "Item 7",
+                "value": "chest",
                 "text": "صدرية"
               },
               {
-                "value": "Item 8",
+                "value": "rheumato",
                 "text": "روماتيزم"
               },
               {
-                "value": "Item 9",
+                "value": "neuro",
                 "text": "عصبية"
               }
             ],
@@ -261,39 +261,39 @@ const rounds={
       {
         "name": "page4",
         "title": "راوند طب الأسرة ",
-        "description": "في هذه الفترة سيكون الحضور في الوحدات الصحية المختلفة ⦿\r\nتأكد من اختيار اقرب مركز الي محل السكن حيث سيتم توزيعك للحضور في الوحدات الصحية القريبة ⦿",
+        "description": "⦿ في هذه الفترة سيكون الحضور في الوحدات الصحية المختلفة\r\n⦿ تأكد من اختيار اقرب مركز الي محل السكن حيث سيتم توزيعك للحضور في الوحدات الصحية القريبة",
         "elements": [
           {
             "type": "radiogroup",
-            "name": "question10",
+            "name": "city",
             "title": "اقرب مركز الي محل اقامتك",
             "choices": [
               {
-                "value": "Item 1",
+                "value": "benisuef",
                 "text": "بني سويف"
               },
               {
-                "value": "Item 2",
+                "value": "wasta",
                 "text": "الواسطي"
               },
               {
-                "value": "Item 3",
+                "value": "ihnasia",
                 "text": "اهناسيا"
               },
               {
-                "value": "Item 4",
+                "value": "beba",
                 "text": "ببا"
               },
               {
-                "value": "Item 5",
+                "value": "somosta",
                 "text": "سمسطا"
               },
               {
-                "value": "Item 6",
+                "value": "fashn",
                 "text": "الفشن"
               },
               {
-                "value": "Item 7",
+                "value": "naser",
                 "text": "ناصر"
               }
             ],

@@ -14,6 +14,7 @@ import { db } from "@/db/db";
 
 registerKanban();
 const specs= Array(2);
+const userData=Array();
 export default function Form() {
     const survey = new Model(surveyJson);
     survey.applyTheme(themeJson);
@@ -22,10 +23,26 @@ export default function Form() {
         specs[0] = options.value;
       } else if (options.name == "sur1"){
         specs[1] = options.value;
+      } else if(options.name === "FID"){
+        const isExist= async () => {
+        const supabase = await db();
+        const { data, error } = await supabase
+              .from('internship')
+              .select()
+              .eq('student_id', options.value);
+              userData.push(...data);
+       }
+       isExist();
       }
+
       });
     survey.onValidateQuestion.add((survey, options) => {
-        if (options.name === "kanbanBoard") {
+      if(options.name === "FID"){
+        if(userData.length>0){
+          options.error = "User "+ userData[0].national_id+ ", You Are Registered; Please refer to the form admin"
+          }
+        }
+       else if (options.name === "kanbanBoard") {
           if (!options.value || options.value.kanbanDataFirst.length!=6 &&
              options.value.kanbanDataSecond.length!=6 &&
              options.value.kanbanDataThird.length!=6
@@ -40,7 +57,7 @@ export default function Form() {
         else if (options.name === "sur2") {
           if (options.value == specs[1]) {
            options.error = 'Please choose different rounds for surgery'
-         }
+         }  
         }
       });
     survey.onComplete.add((sender, options) => {
